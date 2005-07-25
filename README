@@ -1,0 +1,10 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1317
+
+  This script provides following trivial functionalities you can used
+in your own scripts:
+  - open a console in the current working directory.
+  - remove trailing spaces.
+  - insert date. This is only available via menu entry.
+
+  Once the script is installed, it automatically add a menu named
+'bwUtility' via which you can access all functins of this script.
