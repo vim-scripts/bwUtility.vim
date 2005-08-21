@@ -8,10 +8,11 @@
 "            event will the copyright holder be liable for any damages
 "            resulting from the use of this software.
 " Filename:  bwUtility.vim
-" Author:    Bruce Who(AKA. 胡旭昭 HuXuzhao)
+" URL:       http://vim.sourceforge.net/scripts/script.php?script_id=1317
+" Author:    Bruce Who (AKA. 胡旭昭 or HuXuzhao)
 " Email:     HuXuzhao at hotmail.com
 " Date:      2005-07-25
-" $Revision: 1.1 $
+" $Revision: 1.3 $
 " Description:
 "   This script provides following trivial functionalities you can used
 " in your own scripts:
@@ -42,7 +43,7 @@ let g:bwUtility = 1 " }}}
 let g:bwUtility_menu_id=7000
 " }}}
 
-" interface functions {{{
+" functions {{{
 
 function BWUtility_open_console()
   if has('win32')
@@ -64,12 +65,27 @@ function BWUtility_trim_trailing_space()
   " nohl
 endfunction
 
+" break long lines according to 'textwidth'
+function BWUtility_auto_breaklines()
+  let temp=&formatoptions
+  set formatoptions=tcqn2mMB
+  normal gggqG
+  let &formatoptions=temp
+endfunction
+
 " }}}
 
 " menu {{{
-exe "amenu " . g:bwUtility_menu_id . '.11 bwUtility.Open\ Console :call BWUtility_open_console()<CR>'
-exe "amenu " . g:bwUtility_menu_id . '.12 bwUtility.Trim\ Trailing\ Space :call BWUtility_trim_trailing_space()<CR>'
-exe "imenu " . g:bwUtility_menu_id . '.12 bwUtility.Insert\ Date <C-R>=strftime("%Y-%m-%d")<CR>'
+exe "amenu " . g:bwUtility_menu_id . '.11 bwUtility.Open\ Console ' .
+             \ ':call BWUtility_open_console()<CR>'
+exe "amenu " . g:bwUtility_menu_id . '.12 bwUtility.Trim\ Trailing\ Space ' .
+             \ ':call BWUtility_trim_trailing_space()<CR>'
+exe "amenu " . g:bwUtility_menu_id . '.13 bwUtility.Breaklines ' .
+             \ ':call BWUtility_auto_breaklines()<CR>'
+exe "amenu " . g:bwUtility_menu_id . '.14 bwUtility.Breaklines\ for\ All ' .
+             \ ':bufdo call BWUtility_auto_breaklines()<CR>'
+exe "imenu " . g:bwUtility_menu_id . '.15 bwUtility.Insert\ Date ' .
+             \ '<C-R>=strftime("%Y-%m-%d")<CR>'
 " }}}
 
 " Modeline for ViM {{{
